@@ -1,0 +1,35 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute name="salutationOptions" type="List" default="[
+        {'label': 'None', 'value': 'None'},
+        {'label': 'Mr.', 'value': 'Mr.'},
+        {'label': 'Ms.', 'value': 'Ms.'},
+        {'label': 'Mrs.', 'value': 'Mrs.'},
+        {'label': 'Dr.', 'value': 'Dr.'},
+        {'label': 'Prof.', 'value': 'Prof.'},
+    ]"/>
+    <aura:attribute name="fields" type="List" default="['firstName', 'lastName']"/>
+    <aura:attribute name="val" type="String" default ="Test" />
+    <div>
+        <lightning:inputName
+            aura:id="input"
+            value ="{!v.val}"
+            label="Default Input Name Field"
+            firstName="John"
+            middleName="Middleton"
+            lastName="Doe"
+            informalName="Jo"
+            suffix="The 3rd"
+            salutation="Mr."
+            options="{!v.salutationOptions}"
+        />        
+    </div>
+	<aura:attribute name="today" type="Date" default=""/>
+	
+    <ui:inputDate aura:id="expdate" label="Today's Date" class="field" value="{!v.today}" displayDatePicker="true" />      
+    <ui:button class="btn" label="Submit" press="{!c.setOutput}"/>	
+
+	<div aura:id="msg" class="hide">
+		You entered: <ui:outputDate aura:id="oDate" value="" />
+	</div>
+    <lightning:button variant="destructive" label="Destructive" title="Destructive action" onclick="{!c.handleClick}"/>
+</aura:component>
